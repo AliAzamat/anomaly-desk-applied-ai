@@ -64,10 +64,3 @@ The other entry points are the stream consumer (`python -m desk.ingest.consumer`
 | `desk/store/` | Postgres access and migrations |
 | `console/src/AnomalyDesk.tsx` | Operator console |
 | [docs/WHAT_THE_GATE_MISSES.md](docs/WHAT_THE_GATE_MISSES.md) | Known blind spots of the evaluation gate |
-
-## Status and limitations
-
-- **Not packaged to run end to end.** There's no dependency file, model client configuration, app entry point for the API, or build setup for the console. Docker and Kubernetes manifests aren't included.
-- **Migration `002_corpus.sql` needs pgvector** but doesn't create the extension; run `CREATE EXTENSION vector;` first. The other migrations apply cleanly to PostgreSQL 16.
-- **No evaluation data is committed.** The judge, calibration, and scoreboard modules compute from eval sets and override history that aren't in the repository, so no scores are reported here.
-- The event schema and station list mirror an upstream "factory console" project that isn't part of this repository.
